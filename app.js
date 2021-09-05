@@ -17,42 +17,49 @@ const nine = document.querySelector('#nine')
 const zero = document.querySelector('#zero')
 const cancel = document.querySelector('#cancel')
 const plus = document.querySelector('#plus')
+const equals = document.querySelector('#equals')
+const minus = document.querySelector('#minus')
+const multiply = document.querySelector('#mult')
+const div = document.querySelector('#divide')
 
-let dispVal = ''
-let num1 = 0
-let num2 = 0
+let dispVal = '';
+let num1 = 0;
+let num2 = 0;
+let operater = '';
+
 //delaring Functions
 function add(a, b) {
-    a + b
+    return a + b
 }
 
 function subtract(a, b) {
-    a - b
+    return a - b
 }
 
 function mult(a, b) {
-    a * b
+    return a * b
 }
 
 function divide(a, b) {
-    a / b
+    return a / b
 }
 
 function operate(a, b, c) {
     if (c == 'plus') {
-        add(a, b)
+        return add(a, b)
     } else if (c == 'subtract') {
-        subtract(a, b)
+        return subtract(a, b)
     } else if (c == 'mult') {
-        mult(a, b)
+        return mult(a, b)
     } else if (c == 'divide') {
-        divide(a, b)
+        return divide(a, b)
     }
 }
 
 function valStore(num) {
     let val = num;
     dispVal += val;
+    display.innerHTML = dispVal
     console.log(dispVal);
 }
 
@@ -67,63 +74,85 @@ function valSet() {
     dispVal = ''
 }
 
-//Event Listeners
-one.addEventListener('click', function(e) {
-    display.innerHTML += '1'
+//numerical buttons
+one.addEventListener('click', function() {
     valStore(1)
 })
 
-two.addEventListener('click', function(e) {
-    display.innerHTML += '2'
+two.addEventListener('click', function() {
     valStore(2)
 })
 
-three.addEventListener('click', function(e) {
-    display.innerHTML += '3'
+three.addEventListener('click', function() {
     valStore(3)
 })
 
-four.addEventListener('click', function(e) {
-    display.innerHTML += '4'
+four.addEventListener('click', function() {
     valStore(4)
 })
 
-five.addEventListener('click', function(e) {
-    display.innerHTML += '5'
+five.addEventListener('click', function() {
     valStore(5)
 })
 
-six.addEventListener('click', function(e) {
-    display.innerHTML += '6'
+six.addEventListener('click', function() {
     valStore(6)
 })
 
-seven.addEventListener('click', function(e) {
-    display.innerHTML += '7'
+seven.addEventListener('click', function() {
     valStore(7)
 })
 
-eight.addEventListener('click', function(e) {
-    display.innerHTML += '8'
+eight.addEventListener('click', function() {
     valStore(8)
 })
 
-nine.addEventListener('click', function(e) {
-    display.innerHTML += '9'
+nine.addEventListener('click', function() {
     valStore(9)
 })
 
-zero.addEventListener('click', function(e) {
-    display.innerHTML += '0'
+zero.addEventListener('click', function() {
     valStore(0)
 })
 
-cancel.addEventListener('click', function(e) {
+
+//Operator Buttons
+cancel.addEventListener('click', function() {
     dispVal = ''
+    num1 = 0
+    num2 = 0
+    operater = ''
     display.innerHTML = ''
 })
 
-plus.addEventListener('click', function(e) {
+plus.addEventListener('click', function() {
     display.innerHTML = ''
     valSet()
+    operater = 'plus'
+})
+
+minus.addEventListener('click', function() {
+    display.innerHTML = ''
+    valSet()
+    operater = 'subtract'
+})
+
+multiply.addEventListener('click', function() {
+    display.innerHTML = ''
+    valSet()
+    operater = 'mult'
+})
+
+div.addEventListener('click', function() {
+    display.innerHTML = ''
+    valSet()
+    operater = 'divide'
+})
+
+equals.addEventListener('click', function() {
+    display.innerHTML = ''
+    valSet()
+    let dispVal = operate(num1, num2, operater)
+    display.innerHTML = dispVal
+    console.log(dispVal)
 })
