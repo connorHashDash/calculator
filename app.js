@@ -1,7 +1,5 @@
-// todo 
+
 // max char limit 9
-// creat function which takes numbers
-// neaten up numpad
 
 //Delcaring Elements
 const display = document.querySelector('.numDisplay')
@@ -26,7 +24,7 @@ let dispVal = '';
 let num1 = 0;
 let num2 = 0;
 let operater = '';
-
+let answer = 0;
 //delaring Functions
 function add(a, b) {
     return a + b
@@ -66,10 +64,8 @@ function valStore(num) {
 function valSet() {
     if (num1 == 0) {
         num1 = parseFloat(dispVal)
-        console.log(num1)
     } else {
         num2 = parseFloat(dispVal)
-        console.log()
     }
     dispVal = ''
 }
@@ -115,7 +111,6 @@ zero.addEventListener('click', function() {
     valStore(0)
 })
 
-
 //Operator Buttons
 cancel.addEventListener('click', function() {
     dispVal = ''
@@ -129,6 +124,8 @@ plus.addEventListener('click', function() {
     display.innerHTML = ''
     valSet()
     operater = 'plus'
+    console.log('num1: ' + num1)
+    console.log('num2: ' + num2)
 })
 
 minus.addEventListener('click', function() {
@@ -152,7 +149,11 @@ div.addEventListener('click', function() {
 equals.addEventListener('click', function() {
     display.innerHTML = ''
     valSet()
-    let dispVal = operate(num1, num2, operater)
-    display.innerHTML = dispVal
-    console.log(dispVal)
+    answer = operate(num1, num2, operater)
+    display.innerHTML = answer
+    num2 = 0
+    console.log('num1: ' + num1)
+    console.log('num2: ' + num2)
+    console.log('answer: ' + answer)
 })
+
