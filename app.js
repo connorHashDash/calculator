@@ -25,6 +25,7 @@ let num1 = 0;
 let num2 = 0;
 let operater = '';
 let answer = 0;
+
 //delaring Functions
 function add(a, b) {
     return a + b
@@ -61,13 +62,25 @@ function valStore(num) {
     console.log(dispVal);
 }
 
+// Type Input
+// press modifier, assigns num1 
+// num1 = 1
+// type input 
+// press equals OR modifier, assigns num2
+// num2 = 2 
+
 function valSet() {
     if (num1 == 0) {
         num1 = parseFloat(dispVal)
-    } else {
+    } else if (num2 == 0) {
         num2 = parseFloat(dispVal)
+    } else if (num1 !== 0 && num2 !== 0){
+        
+      
     }
-    dispVal = ''
+    dispVal = '';
+    console.log(num1);
+    console.log(num2);
 }
 
 //numerical buttons
