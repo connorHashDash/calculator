@@ -17,7 +17,17 @@
 
 .numDisplay{
   font-family:arial;
+  font-size: 5rem;
+  min-height: 5rem;
+  max-width: 373px;
+}
+
+.runSum{
+  min-height: 3rem;
+  font-family:arial;
   font-size: 3rem;
+  color: grey;
+  max-width: 373px;
 }
 
 .nums{
@@ -26,17 +36,11 @@
 }
 
 .screenCont{
-  height: 100px;
   width: 373px;
-  display: flex;
+  min-height: 100px;
   justify-content: flex-end;
   align-items: flex-end;
-  flex-direction: column;
   border: 1px solid black;
-}
-
-.numDisplay{
-  margin-bottom: 1em;
 }
 
 

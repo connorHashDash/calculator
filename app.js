@@ -1,24 +1,24 @@
-
 // max char limit 9
 
 //Delcaring Elements
-const display = document.querySelector('.numDisplay')
-const one = document.querySelector('#one')
-const two = document.querySelector('#two')
-const three = document.querySelector('#three')
-const four = document.querySelector('#four')
-const five = document.querySelector('#five')
-const six = document.querySelector('#six')
-const seven = document.querySelector('#seven')
-const eight = document.querySelector('#eight')
-const nine = document.querySelector('#nine')
-const zero = document.querySelector('#zero')
-const cancel = document.querySelector('#cancel')
-const plus = document.querySelector('#plus')
-const equals = document.querySelector('#equals')
-const minus = document.querySelector('#minus')
-const multiply = document.querySelector('#mult')
-const div = document.querySelector('#divide')
+const display = document.querySelector('.numDisplay');
+const sum = document.querySelector('.runSum');
+const one = document.querySelector('#one');
+const two = document.querySelector('#two');
+const three = document.querySelector('#three');
+const four = document.querySelector('#four');
+const five = document.querySelector('#five');
+const six = document.querySelector('#six');
+const seven = document.querySelector('#seven');
+const eight = document.querySelector('#eight');
+const nine = document.querySelector('#nine');
+const zero = document.querySelector('#zero');
+const cancel = document.querySelector('#cancel');
+const plus = document.querySelector('#plus');
+const equals = document.querySelector('#equals');
+const minus = document.querySelector('#minus');
+const multiply = document.querySelector('#mult');
+const div = document.querySelector('#divide');
 
 let dispVal = '';
 let num1 = 0;
@@ -26,22 +26,24 @@ let num2 = 0;
 let operater = '';
 let answer = 0;
 
+display.innerHTML = '<p>0</p>';
+
 //delaring Functions
 function add(a, b) {
     return a + b
-}
+};
 
 function subtract(a, b) {
     return a - b
-}
+};
 
 function mult(a, b) {
     return a * b
-}
+};
 
 function divide(a, b) {
     return a / b
-}
+};
 
 function operate(a, b, c) {
     if (c == 'plus') {
@@ -53,34 +55,39 @@ function operate(a, b, c) {
     } else if (c == 'divide') {
         return divide(a, b)
     }
-}
+};
 
 function valStore(num) {
     let val = num;
     dispVal += val;
-    display.innerHTML = dispVal
+    display.innerHTML = dispVal;
     console.log(dispVal);
-}
-
-// Type Input
-// press modifier, assigns num1 
-// num1 = 1
-// type input 
-// press equals OR modifier, assigns num2
-// num2 = 2 
+};
 
 function valSet() {
     if (num1 == 0) {
         num1 = parseFloat(dispVal)
     } else if (num2 == 0) {
         num2 = parseFloat(dispVal)
-    } else if (num1 !== 0 && num2 !== 0){
-        
-      
+    } else if (num1 !== 0 && num2 !== 0) {
+        num1 = operate(num1, num2, operater)
     }
+    sum.innerHTML += dispVal;
     dispVal = '';
-    console.log(num1);
-    console.log(num2);
+}
+
+function opSet(){
+    let sym = ''
+    if (operater == 'plus') {
+        sym = '+'
+    } else if (operater == 'subtract') {
+        sym = '-'
+    } else if (operater == 'mult') {
+        sym = 'x'
+    } else if (operater == 'divide') {
+        sym = '/'
+    }
+    sum.innerHTML += sym
 }
 
 //numerical buttons
@@ -130,43 +137,46 @@ cancel.addEventListener('click', function() {
     num1 = 0
     num2 = 0
     operater = ''
-    display.innerHTML = ''
+    display.innerHTML = '<p>0</p>';
+    sum.innerHTML = ''
 })
 
 plus.addEventListener('click', function() {
     display.innerHTML = ''
-    valSet()
     operater = 'plus'
-    console.log('num1: ' + num1)
-    console.log('num2: ' + num2)
+    valSet()
+    opSet()
 })
 
 minus.addEventListener('click', function() {
     display.innerHTML = ''
-    valSet()
     operater = 'subtract'
+    valSet()
+    opSet()
 })
 
 multiply.addEventListener('click', function() {
     display.innerHTML = ''
-    valSet()
     operater = 'mult'
+    valSet()
+    opSet()
 })
 
 div.addEventListener('click', function() {
-    display.innerHTML = ''
-    valSet()
-    operater = 'divide'
+    display.innerHTML = '';
+    operater = 'divide';
+    valSet();
+    opSet()
 })
 
 equals.addEventListener('click', function() {
-    display.innerHTML = ''
-    valSet()
-    answer = operate(num1, num2, operater)
-    display.innerHTML = answer
-    num2 = 0
-    console.log('num1: ' + num1)
-    console.log('num2: ' + num2)
-    console.log('answer: ' + answer)
+    display.innerHTML = '';
+    valSet();
+    answer = operate(num1, num2, operater);
+    display.innerHTML = answer;
+    num1 = answer;
+    num2 = 0;
+    console.log('num1: ' + num1);
+    console.log('num2: ' + num2);
+    console.log('answer: ' + answer);
 })
-
