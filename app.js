@@ -1,5 +1,3 @@
-// max char limit 9
-
 //Delcaring Elements
 const display = document.querySelector('.numDisplay');
 const sum = document.querySelector('.runSum');
@@ -24,7 +22,6 @@ let dispVal = '';
 let num1 = 0;
 let num2 = 0;
 let operater = '';
-let answer = 0;
 
 display.innerHTML = '<p>0</p>';
 
@@ -71,6 +68,7 @@ function valSet() {
         num2 = parseFloat(dispVal)
     } else if (num1 !== 0 && num2 !== 0) {
         num1 = operate(num1, num2, operater)
+        return num1 
     }
     sum.innerHTML += dispVal;
     dispVal = '';
@@ -170,13 +168,13 @@ div.addEventListener('click', function() {
 })
 
 equals.addEventListener('click', function() {
+    let answer = 0;
     display.innerHTML = '';
-    valSet();
+    valSet()
+    
     answer = operate(num1, num2, operater);
+    sum.innerHTML += '=';
     display.innerHTML = answer;
     num1 = answer;
     num2 = 0;
-    console.log('num1: ' + num1);
-    console.log('num2: ' + num2);
-    console.log('answer: ' + answer);
 })

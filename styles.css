@@ -16,7 +16,7 @@
 }
 
 .numDisplay{
-  font-family:arial;
+  font-family: arial;
   font-size: 5rem;
   min-height: 5rem;
   max-width: 373px;
@@ -24,7 +24,7 @@
 
 .runSum{
   min-height: 3rem;
-  font-family:arial;
+  font-family: arial;
   font-size: 3rem;
   color: grey;
   max-width: 373px;
@@ -38,8 +38,10 @@
 .screenCont{
   width: 373px;
   min-height: 100px;
+  display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+
   border: 1px solid black;
 }
 
