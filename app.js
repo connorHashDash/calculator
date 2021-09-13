@@ -54,25 +54,36 @@ function operate(a, b, c) {
     }
 };
 
+function wipe(){
+    display.innerHTML = '';
+}
+
 function valStore(num) {
     let val = num;
     dispVal += val;
     display.innerHTML = dispVal;
-    console.log(dispVal);
 };
 
 function valSet() {
     if (num1 == 0) {
         num1 = parseFloat(dispVal)
+        console.log('num1 first:' + num1)
+        console.log('num2 first:' + num2)
     } else if (num2 == 0) {
         num2 = parseFloat(dispVal)
-    } else if (num1 !== 0 && num2 !== 0) {
+        console.log('num1 second:' + num1)
+        console.log('num2 second:' + num2)
+    } else if (num1 >= 0 && num2 >= 0) {
         num1 = operate(num1, num2, operater)
-        return num1 
+        num2 = parseFloat(dispVal)
+        console.log('num1 fin:' + num1)
+        console.log('num2 fin:' + num2)
     }
     sum.innerHTML += dispVal;
     dispVal = '';
 }
+
+
 
 function opSet(){
     let sym = ''
@@ -92,39 +103,27 @@ function opSet(){
 one.addEventListener('click', function() {
     valStore(1)
 })
-
 two.addEventListener('click', function() {
     valStore(2)
 })
-
 three.addEventListener('click', function() {
     valStore(3)
 })
-
 four.addEventListener('click', function() {
     valStore(4)
 })
-
 five.addEventListener('click', function() {
     valStore(5)
 })
-
 six.addEventListener('click', function() {
     valStore(6)
 })
-
 seven.addEventListener('click', function() {
     valStore(7)
 })
-
-eight.addEventListener('click', function() {
-    valStore(8)
-})
-
 nine.addEventListener('click', function() {
     valStore(9)
 })
-
 zero.addEventListener('click', function() {
     valStore(0)
 })
@@ -169,11 +168,12 @@ div.addEventListener('click', function() {
 
 equals.addEventListener('click', function() {
     let answer = 0;
-    display.innerHTML = '';
+    wipe()
     valSet()
-    
     answer = operate(num1, num2, operater);
-    sum.innerHTML += '=';
+    sum.innerHTML += dispVal;
+    dispVal = '';
+    sum.innerHTML += '=' ;
     display.innerHTML = answer;
     num1 = answer;
     num2 = 0;
