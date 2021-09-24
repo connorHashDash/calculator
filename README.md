@@ -1,8 +1,12 @@
-#A simple calculator,
-Can currently add, subtract, divide and multiply 2 numbers
+# A simple calculator,
+Completely functional calculator, just needs to be made a bit more pleasing to look at. 
 
-# What to expect
-- Nicer code which creates the numpad buttons in a loop
+Just made as a programming exercise. 
+
+May come back and add some more scientific functionality, cos, pi, brackets. We'll see.
+
+## What to expect
+
 - A more pleasant gui
-- perhaps a "power of" function, who knows function, who knows
-- perhaps the ability to operate on more than one number, for instance "1+5/3x2"
+
+- decimal calculations
