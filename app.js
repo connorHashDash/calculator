@@ -1,180 +1,176 @@
-//Delcaring Elements
-const display = document.querySelector('.numDisplay');
-const sum = document.querySelector('.runSum');
-const one = document.querySelector('#one');
-const two = document.querySelector('#two');
-const three = document.querySelector('#three');
-const four = document.querySelector('#four');
-const five = document.querySelector('#five');
-const six = document.querySelector('#six');
-const seven = document.querySelector('#seven');
-const eight = document.querySelector('#eight');
-const nine = document.querySelector('#nine');
-const zero = document.querySelector('#zero');
-const cancel = document.querySelector('#cancel');
-const plus = document.querySelector('#plus');
-const equals = document.querySelector('#equals');
-const minus = document.querySelector('#minus');
-const multiply = document.querySelector('#mult');
-const div = document.querySelector('#divide');
+// Calculator Display
+const inputDisp = document.querySelector('.numDisplay');
 
-let dispVal = '';
+// Numberpad parent
+let numpad = document.getElementById('nums');
+
+//Special Buttons
+const cancel = document.getElementById('cancel');
+const plusButton = document.getElementById('plus');
+const minusButton = document.getElementById('minus');
+const multButton = document.getElementById('mult');
+const divideButton = document.getElementById('divide');
+const equalsButton = document.getElementById('equals');
+
+// Variables
+let dispVal = '0';   // Value of the display
+let operator = ''   // Currently selected operator "plus" or "minus"
 let num1 = 0;
 let num2 = 0;
-let operater = '';
+let moreThanTwo = false
 
-display.innerHTML = '<p>0</p>';
-
-//delaring Functions
-function add(a, b) {
-    return a + b
+// Special Button Functions
+function clearAll(){    // Clears all values and resets calculator
+  inputDisp.innerHTML = '0';
+  dispVal = '0';
+  operator = '';
+  num1 = 0;
+  num2 = 0;
 };
 
-function subtract(a, b) {
-    return a - b
+function opClear(){         // Clears all but the operator
+  dispVal = '';
 };
 
-function mult(a, b) {
-    return a * b
-};
-
-function divide(a, b) {
-    return a / b
-};
-
-function operate(a, b, c) {
-    if (c == 'plus') {
-        return add(a, b)
-    } else if (c == 'subtract') {
-        return subtract(a, b)
-    } else if (c == 'mult') {
-        return mult(a, b)
-    } else if (c == 'divide') {
-        return divide(a, b)
-    }
-};
-
-function wipe(){
-    display.innerHTML = '';
+function opSet(op){
+  return op
+  moreThanTwo = true
 }
 
-function valStore(num) {
-    let val = num;
-    dispVal += val;
-    display.innerHTML = dispVal;
+// Changes the operator 
+function plusFunction(){
+  if(moreThanTwo = true){
+    valStore()
+  }
+  operator = opSet('plus')
+  valStore()
+  opClear()
 };
 
-function valSet() {
-    if (num1 == 0) {
-        num1 = parseFloat(dispVal)
-        console.log('num1 first:' + num1)
-        console.log('num2 first:' + num2)
-    } else if (num2 == 0) {
-        num2 = parseFloat(dispVal)
-        console.log('num1 second:' + num1)
-        console.log('num2 second:' + num2)
-    } else if (num1 >= 0 && num2 >= 0) {
-        num1 = operate(num1, num2, operater)
-        num2 = parseFloat(dispVal)
-        console.log('num1 fin:' + num1)
-        console.log('num2 fin:' + num2)
-    }
-    sum.innerHTML += dispVal;
-    dispVal = '';
+function minusFunction(){
+  if(moreThanTwo = true){
+    valStore()
+  }
+  operator = opSet('subtract')
+  valStore()
+  opClear()
+};
+
+function multFunction(){
+  if(moreThanTwo = true){
+    valStore()
+  }
+  operator = opSet('mult')
+  valStore()
+  opClear()
+};
+
+function divideFunction(){
+  if(moreThanTwo = true){
+    valStore()
+  }
+  operator = opSet('divide')
+  valStore()
+  opClear()
+};
+
+function equalsFunction(){
+  if(num1 == 0 && num2 == 0 && operator == 'divide'){
+    inputDisp.innerHTML = '( ͡° ͜ʖ ͡°)'
+  }else{
+  valStore()
+  }
+};
+
+// Math Functions
+function add(a, b){return a + b}
+function subtract(a, b) {return a - b}
+function mult(a, b) {return a * b}
+function divide(a, b) {return a / b}
+
+// All functions run through here, with the operator decided
+function operate(num1, num2, op) {
+  if (op == 'plus'){ return add(num1, num2) }
+  if (op == 'subtract'){return subtract(num1, num2)}
+  if (op == 'mult'){return mult(num1, num2)}
+  if (op == 'divide'){return divide(num1, num2)}
 }
 
-
-
-function opSet(){
-    let sym = ''
-    if (operater == 'plus') {
-        sym = '+'
-    } else if (operater == 'subtract') {
-        sym = '-'
-    } else if (operater == 'mult') {
-        sym = 'x'
-    } else if (operater == 'divide') {
-        sym = '/'
-    }
-    sum.innerHTML += sym
+// Puts numbers on display and stores them in a value simultaniously 
+function valSet(num){
+  if (dispVal == 0){
+   inputDisp.innerHTML = '' 
+  }
+  inputDisp.innerHTML += parseInt(num);
+  dispVal += num;
 }
 
-//numerical buttons
-one.addEventListener('click', function() {
-    valStore(1)
-})
-two.addEventListener('click', function() {
-    valStore(2)
-})
-three.addEventListener('click', function() {
-    valStore(3)
-})
-four.addEventListener('click', function() {
-    valStore(4)
-})
-five.addEventListener('click', function() {
-    valStore(5)
-})
-six.addEventListener('click', function() {
-    valStore(6)
-})
-seven.addEventListener('click', function() {
-    valStore(7)
-})
-nine.addEventListener('click', function() {
-    valStore(9)
-})
-zero.addEventListener('click', function() {
-    valStore(0)
-})
-
-//Operator Buttons
-cancel.addEventListener('click', function() {
-    dispVal = ''
-    num1 = 0
+function longSum(){
+    num1 = operate(num1, num2, operator)
     num2 = 0
-    operater = ''
-    display.innerHTML = '<p>0</p>';
-    sum.innerHTML = ''
+    inputDisp.innerHTML = num1
+    dispVal = '0'
+}
+
+function valStore(){
+  if(operator)
+  if (num1 == 0){
+    num1 = parseInt(dispVal)
+    inputDisp.innerHTML = '';
+    //console.log(num1)
+  } else if(num2 == 0) {
+    num2 = parseInt(dispVal)
+    //console.log(num2)
+    } 
+  if (num1 !== 0 && num2 !== 0){
+    longSum()
+  }
+}
+
+// Creates Numbers on the numpad
+for(i = 1; i <= 10; i++){
+  if(i == 10){
+    let numbers = document.createElement('div')
+    numbers.className = 'buttons'
+    numbers.id = `button 0`
+    numbers.innerHTML = `<p> 0 </p>`
+    numpad.appendChild(numbers)
+    numbers.addEventListener('click', function(){
+      valSet(0)
+    });
+  } else {
+    let numbers = document.createElement('div')
+    numbers.className = 'buttons'
+    numbers.id = `button${i}`
+    numbers.innerHTML =  i
+    numpad.appendChild(numbers)
+    numbers.addEventListener('click', function(){
+      valSet(this.innerHTML)
+    });
+  }
+}
+
+// Special Buttons 
+cancel.addEventListener('click', clearAll);
+
+plusButton.addEventListener('click', function(){
+  plusFunction()
+});
+
+minusButton.addEventListener('click', function(){
+  minusFunction()
 })
 
-plus.addEventListener('click', function() {
-    display.innerHTML = ''
-    operater = 'plus'
-    valSet()
-    opSet()
+multButton.addEventListener('click', function(){
+  multFunction()
 })
 
-minus.addEventListener('click', function() {
-    display.innerHTML = ''
-    operater = 'subtract'
-    valSet()
-    opSet()
+divideButton.addEventListener('click', function(){
+  divideFunction()
 })
 
-multiply.addEventListener('click', function() {
-    display.innerHTML = ''
-    operater = 'mult'
-    valSet()
-    opSet()
+equalsButton.addEventListener('click', function(){
+  equalsFunction()
 })
 
-div.addEventListener('click', function() {
-    display.innerHTML = '';
-    operater = 'divide';
-    valSet();
-    opSet()
-})
-
-equals.addEventListener('click', function() {
-    let answer = 0;
-    wipe()
-    valSet()
-    answer = operate(num1, num2, operater);
-    sum.innerHTML += dispVal;
-    dispVal = '';
-    sum.innerHTML += '=' ;
-    display.innerHTML = answer;
-    num1 = answer;
-    num2 = 0;
-})
+inputDisp.innerHTML = dispVal

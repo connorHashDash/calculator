@@ -4,7 +4,7 @@
 }
 
 .upper{
-  height:20vh;
+  height:10vh;
 }
 
 .mainCont{
@@ -35,16 +35,21 @@
   grid-template-columns: auto auto auto;
 }
 
+.specialButtons{
+  display: inline-grid;
+  grid-template-columns: auto;
+}
+
 .screenCont{
+  font-family: arial;
+  font-size: 3rem;
   width: 373px;
   min-height: 100px;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-
   border: 1px solid black;
 }
-
 
 .buttons{
   display: flex;
