@@ -1,12 +1,15 @@
 # A simple calculator,
-Completely functional calculator, just needs to be made a bit more pleasing to look at. 
+Completely functional calculator. With decimal calculations, a running sum and pleasant GUI
 
-Just made as a programming exercise. 
+Made as a programming exercise. 
 
-May come back and add some more scientific functionality, cos, pi, brackets. We'll see.
+## Some small creases.
 
-## What to expect
+- limit the number of digits that can be used. Both in inputs and outputs (divide 10 by three to see
+    what I mean)
 
-- A more pleasant gui
+- Odd running sum funcitonality 
 
-- decimal calculations
+## What may be added
+
+Keyboard support
